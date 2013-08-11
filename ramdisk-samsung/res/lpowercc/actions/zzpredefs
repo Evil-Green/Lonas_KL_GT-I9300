@@ -133,7 +133,7 @@ case "$zzpredef" in
     lcdfreq_kick_in_up_delay="1"
     lcdfreq_kick_in_down_delay="5"
     lcdfreq_kick_in_freq="500000"
-    zzmoove_predef="1"
+    zzmoove_predef="0"
     write_values
     ;;
   1)
@@ -209,7 +209,7 @@ case "$zzpredef" in
     lcdfreq_kick_in_up_delay="50"
     lcdfreq_kick_in_down_delay="20"
     lcdfreq_kick_in_freq="500000"
-    zzmoove_predef="0"
+    zzmoove_predef="2"
     write_values
     ;;
   3)
@@ -247,7 +247,7 @@ case "$zzpredef" in
     lcdfreq_kick_in_up_delay="1"
     lcdfreq_kick_in_down_delay="5"
     lcdfreq_kick_in_freq="500000"
-    zzmoove_predef="2"
+    zzmoove_predef="3"
     write_values
     ;;
   4)
@@ -285,7 +285,7 @@ case "$zzpredef" in
     lcdfreq_kick_in_up_delay="1"
     lcdfreq_kick_in_down_delay="5"
     lcdfreq_kick_in_freq="500000"
-    zzmoove_predef="3"
+    zzmoove_predef="4"
     write_values
     ;;
   *)
