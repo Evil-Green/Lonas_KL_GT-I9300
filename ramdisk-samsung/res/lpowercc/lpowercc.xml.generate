@@ -35,17 +35,18 @@ echo '
   </settingsTab>
 
   <settingsTab name="Zzmoove">
-    <settingsPane description="ZZmove es el Governor por defecto, desde aquí podrá seleccionar diferentes perfiles dependiendo de el uso que le quiera dar. Podrá elegir entre Normal, Batería, Equilibrado y Rendimiento. Pero estos perfiles solo son funcionales si el governor seleccionado por defecto es Zzmove"  
+    <settingsPane description="ZZmove es el Governor por defecto, desde aquí podrá seleccionar diferentes perfiles dependiendo de el uso que le quiera dar. Podrá elegir entre MaxBatería, Normal, Batería, Equilibrado y Rendimiento. Pero estos perfiles solo son funcionales si el governor seleccionado por defecto es Zzmove"  
                   name="Información">
     </settingsPane>' >> $XML
 
 echo "
     <settingsPane description=\"Zzmoove perfiles predefinidos\" name=\"Zzmoove perfiles predefinidos\">
       <spinner description=\"Zzmoove perfiles predefinidos\" name=\"Zzmoove perfiles predefinidos\" action=\"zzpredefs zzpredef\">
-             <spinnerItem name=\"Normal\" value=\"0\"/> 
-             <spinnerItem name=\"Batería\" value=\"1\"/> 
-             <spinnerItem name=\"Equilibrado\" value=\"2\"/> 
-             <spinnerItem name=\"Rendimiento\" value=\"3\"/>
+             <spinnerItem name=\"MaxBatería\" value=\"0\"/> 
+             <spinnerItem name=\"Batería\" value=\"1\"/>
+             <spinnerItem name=\"Normal\" value=\"2\"/> 
+             <spinnerItem name=\"Equilibrado\" value=\"3\"/> 
+             <spinnerItem name=\"Rendimiento\" value=\"4\"/>
       </spinner>
     </settingsPane>
     <settingsPane description=\"regular el escalado del voltaje de la frecuencia dinámica de la CPU.\" 
@@ -413,13 +414,265 @@ echo '
                 label="Activar LED-Fading"/>
 
    </settingsPane>
-    <settingsPane name="Mdnie sharpness" 
-                  description="">
 
-      <checkbox description="Mdnie sharpness fix no es mas que un FIX creado por Hardcore para la pantalla y que mejora la legibilidad del texto." 
-                name="Mdnie sharpness fix" 
-                action="generic01 /sys/class/misc/mdnie_preset/mdnie_preset"
-                label="Activar FIX"/>
+    <settingsPane description="mobile Digital Natural Image engine control. Samsungs hardware image post-processor controls virtually any image manipulation. All control master switches, if left as delta controls, will negate the sequence setting if checked. Master sequence has SCR and CS enabled by default."
+		  name="Global controls">
+
+      <checkbox  description="Register intercept acts like a hook and will enable catching scenario settings and modifying them through delta controls. If a scenario does not have a setting (register) in its base sequence, then it cannot be modified by the hook."
+                name="Register intercept" 
+                action="generic01 /sys/class/misc/mdnie/hook_intercept"
+                label="Enable register hook"/>
+
+      <checkbox  description="Enabling the master sequence will disable and ignore Samsungs profiles and scenarios, the ROM controls will be disabled."
+                name="Master sequence" 
+                action="generic01 /sys/class/misc/mdnie/sequence_intercept"
+                label="Enable master sequence"/>
+
+    </settingsPane>
+
+
+    <settingsPane description="Uses mDNIe to bypass the backlight driver brightness and decrease brightness by reducing luminance on the the channel RGB values. It allows to reduce brightness beyond the stock minimum."
+		  name="Digital screen brightness">
+
+      <seekBar  description="The amount of luminance to be shaved off from the colour channel components."
+		name="Brightness reduction"
+                action="generic /sys/class/misc/mdnie/brightness_reduction"
+                unit="" min="0" reversed="false" step="1" max="128"/>
+
+      <seekBar  description="The stock backlight driver ignores brightness values below 20 (0-255) and values below that point do not have any effect on brightness. The takeover point is the point in the brightness curve where the digital brightness reduction takes effect. The brightness reduction is weighted linearly from full configured value to zero on the range of zero brigtness to the takeover point. If the takeover point is beyond 20, then both hardware and digital brightness reduction can take place. This can help with having a less abrupt brightness curve caused by the digital reduction."
+		name="Takeover point"
+                action="generic /sys/class/misc/mdnie/brightness_takeover_point"
+                unit="" min="0" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Positive delta to be applied on top system brightness. Used only for the digital reduction logic during stock ROM auto-brightness activation, can be used to brighten back up the reduction value by shifting the interpreted brightness value without sacrificing minimum brightness in manual mode."
+		name="Auto-brightness input delta"
+                action="generic /sys/class/misc/mdnie/brightness_input_delta"
+                unit="" min="0" reversed="false" step="1" max="64"/>
+
+    </settingsPane>
+
+    <settingsPane description="Work exclusively on the stock video player."
+		  name="DNR and HDR control">
+
+      <checkbox  description="" 
+                name="Toggle digital noise reduction" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_digital_noise_reduction"
+                label="Toggle digital noise reduction for video playback"/>
+
+      <checkbox  description="" 
+                name="Toggle high dynamic range" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_high_dynamic_range"
+                label="Toggle HDR for video playback"/>
+
+    </settingsPane>
+
+    <settingsPane description=""
+		  name="Digital edge enhancement control">
+
+      <checkbox  description="" 
+                name="Digital edge enhancement UI master switch" 
+                action="maskvalue 1 /sys/class/misc/mdnie/hook_control/s_edge_enhancement"
+                label="Toggle edge enhancement for user interface"/>
+
+      <checkbox  description="" 
+                name="Digital edge enhancement video master switch" 
+                action="maskvalue 2 /sys/class/misc/mdnie/hook_control/s_edge_enhancement"
+                label="Toggle edge enhancement for video playback"/>
+
+      <seekBar  description=""
+		name="Amount"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/de_positive_e"
+                unit="" min="-128" reversed="false" step="1" max="128"/>
+
+      <seekBar  description=""
+		name="Radius"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/de_positive_f"
+                unit="" min="-128" reversed="false" step="1" max="128"/>
+
+      <seekBar  description=""
+		name="Threshold"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/de_positive_f"
+                unit="" min="-128" reversed="false" step="1" max="128"/>
+
+    </settingsPane>
+
+    <settingsPane description="Chroma saturation works in the HSL colour space, modifying saturation will dilute the hue with white or darken with black. Variations in chroma are achieved by adding different amounts of a neutral gray of the same value as the color you want to alter."
+		  name="Chroma saturation control">
+
+      <checkbox  description="Factory settings override the controls." 
+                name="Chroma saturation factory settings" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_factory_chroma_saturation"
+                label="Toggle factory settings"/>
+
+      <seekBar  description="Saturation weight/multipliers for RGB/YCM chroma gains"
+		name="Chroma saturation weight"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_weight"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Red gain"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_red"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Green gain"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_green"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Blue gain"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_blue"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Yellow gain"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_yellow"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Cyan gain"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_cyan"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Magenta gain"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/cs_magenta"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+    </settingsPane>
+
+    <settingsPane description="Changes white colour temperature"
+		  name="White colour temperature control">
+
+      <checkbox  description="" 
+                name="Colour temperature master switch" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_MCM"
+                label="Toggle colour temperature control"/>
+
+      <seekBar  description="Starting point is 6500K."
+		name="Colour temperature"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/mcm_temperature"
+                unit="00K" min="-20" reversed="false" step="1" max="20"/>
+
+    </settingsPane>
+
+    <settingsPane description="The controls is divided in 8 channels, RGB, YCM, W and K. SCR controls are RGB modifiers on each of the controls altering the primary luminosities on that channel."
+		  name="White colour balance">
+
+      <seekBar  description="Red in white"
+		name="Red"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_white_red"
+                unit="" min="-64" reversed="false" step="1" max="20"/>
+
+      <seekBar  description="Green in white"
+		name="Green"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_white_green"
+                unit="" min="-64" reversed="false" step="1" max="20"/>
+
+      <seekBar  description="Blue in white"
+		name="Blue"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_white_blue"
+                unit="" min="-64" reversed="false" step="1" max="20"/>
+
+    </settingsPane>
+
+    <settingsPane description=""
+		  name="Primary (RGB) colour channels addends">
+
+      <seekBar  description="Red in red channel"
+		name="Red in red"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_red_red"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Green in red channel"
+		name="Green in red"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_red_green"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Blue in red channel"
+		name="Blue in red"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_red_blue"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Red in green channel"
+		name="Red in green"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_green_red"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Green in green channel"
+		name="Green in green"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_green_green"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Blue in green channel"
+		name="Blue in green"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_green_blue"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Red in blue channel"
+		name="Red in blue"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_blue_red"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Green in blue channel"
+		name="Green in blue"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_blue_green"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Blue in blue channel"
+		name="Blue in blue"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_blue_blue"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+    </settingsPane>
+
+    <settingsPane description=""
+		  name="Secondary (YCM) colour channels addends">
+
+      <seekBar  description="Red in yellow channel"
+		name="Red in yellow"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_yellow_red"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Green in yellow channel"
+		name="Green in yellow"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_yellow_green"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Blue in yellow channel"
+		name="Blue in yellow"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_yellow_blue"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Red in cyan channel"
+		name="Red in cyan"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_cyan_red"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Green in cyan channel"
+		name="Green in cyan"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_cyan_green"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Blue in cyan channel"
+		name="Blue in cyan"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_cyan_blue"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Red in magenta channel"
+		name="Red in magenta"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_magenta_red"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Green in magenta channel"
+		name="Green in magenta"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_magenta_green"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Blue in magenta channel"
+		name="Blue in magenta"
+                action="generic-offset B /sys/class/misc/mdnie/hook_control/scr_magenta_blue"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
 
     </settingsPane>
   </settingsTab>

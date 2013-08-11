@@ -99,43 +99,45 @@ write_values(){
 
 case "$zzpredef" in
   0)
-    sampling_rate="100000"
+    # MAX BATERÍA
+    sampling_rate="180000"
     sampling_rate_sleep_multiplier="4"
     sampling_down_factor="1"
     sampling_down_max_momentum="0"
     sampling_down_momentum_sensitivity="50"
-    up_threshold="70"
+    up_threshold="98"
     up_threshold_sleep="100"
-    smooth_up="75"
+    smooth_up="78"
     smooth_up_sleep="100"
-    up_threshold_hotplug1="68"
-    up_threshold_hotplug2="68"
-    up_threshold_hotplug3="68"
-    down_threshold="52"
-    down_threshold_sleep="60"
-    down_threshold_hotplug1="55"
-    down_threshold_hotplug2="55"
-    down_threshold_hotplug3="55"
+    up_threshold_hotplug1="63"
+    up_threshold_hotplug2="83"
+    up_threshold_hotplug3="100"
+    down_threshold="43"
+    down_threshold_sleep="63"
+    down_threshold_hotplug1="48"
+    down_threshold_hotplug2="58"
+    down_threshold_hotplug3="68"
     disable_hotplug="0"
     hotplug_sleep="1"
-    freq_step="5"
+    freq_step="15"
     freq_step_sleep="1"
     freq_limit="0"
-    freq_limit_sleep="800000"
+    freq_limit_sleep="700000"
     fast_scaling="0"
     fast_scaling_sleep="2"
     early_demand="0"
-    grad_up_threshold="25"
+    grad_up_threshold="60"
     ignore_nice_load="0"
     lcdfreq_enable="0"
     lcdfreq_kick_in_cores="0"
-    lcdfreq_kick_in_up_delay="50"
-    lcdfreq_kick_in_down_delay="20"
+    lcdfreq_kick_in_up_delay="1"
+    lcdfreq_kick_in_down_delay="5"
     lcdfreq_kick_in_freq="500000"
-    zzmoove_predef="0"
+    zzmoove_predef="1"
     write_values
     ;;
   1)
+    # BATERÍA
     sampling_rate="180000"
     sampling_rate_sleep_multiplier="4"
     sampling_down_factor="1"
@@ -173,6 +175,45 @@ case "$zzpredef" in
     write_values
     ;;
   2)
+    # NORMAL
+    sampling_rate="100000"
+    sampling_rate_sleep_multiplier="4"
+    sampling_down_factor="1"
+    sampling_down_max_momentum="0"
+    sampling_down_momentum_sensitivity="50"
+    up_threshold="70"
+    up_threshold_sleep="100"
+    smooth_up="75"
+    smooth_up_sleep="100"
+    up_threshold_hotplug1="68"
+    up_threshold_hotplug2="68"
+    up_threshold_hotplug3="68"
+    down_threshold="52"
+    down_threshold_sleep="60"
+    down_threshold_hotplug1="55"
+    down_threshold_hotplug2="55"
+    down_threshold_hotplug3="55"
+    disable_hotplug="0"
+    hotplug_sleep="1"
+    freq_step="5"
+    freq_step_sleep="1"
+    freq_limit="0"
+    freq_limit_sleep="800000"
+    fast_scaling="0"
+    fast_scaling_sleep="2"
+    early_demand="0"
+    grad_up_threshold="25"
+    ignore_nice_load="0"
+    lcdfreq_enable="0"
+    lcdfreq_kick_in_cores="0"
+    lcdfreq_kick_in_up_delay="50"
+    lcdfreq_kick_in_down_delay="20"
+    lcdfreq_kick_in_freq="500000"
+    zzmoove_predef="0"
+    write_values
+    ;;
+  3)
+    # EQUILIBRADO
     sampling_rate="45000"
     sampling_rate_sleep_multiplier="4"
     sampling_down_factor="4"
@@ -209,7 +250,8 @@ case "$zzpredef" in
     zzmoove_predef="2"
     write_values
     ;;
-  3)
+  4)
+    # RENDIMIENTO
     sampling_rate="40000"
     sampling_rate_sleep_multiplier="4"
     sampling_down_factor="4"

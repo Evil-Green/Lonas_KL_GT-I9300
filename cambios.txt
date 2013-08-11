@@ -1,7 +1,7 @@
-Kernel Lonas_KL 5.1 versión Stock
+Kernel Lonas_KL 5.1-RC4 versión Stock
 
 ------------------------------------------------
-Cambios realizados a día 10/08/2013
+Cambios realizados a día 11/08/2013
 
 Ramdisk I9300XXEMG4
 Zzmoove Versión 0.7
@@ -33,7 +33,6 @@ ARM: Add optimised swahb32() byteswap helper for v6 and above
 ARM: spinlock: use ticket algorithm for ARMv6+ locking implementation
 hrtimer: Consider preemption when migrating hrtimer cpu_bases
 hrtimer: Prevent enqueue of hrtimer on dead CPU
-rq_stats: add run queue statistic collection to kernel tick scheduler
 ARM: use generic strnlen_user and strncpy_from_user functions
 lib: add generic strnlen_user() function
 lib: Sparc's strncpy_from_user is generic enough, move under lib/
@@ -42,18 +41,20 @@ kernel: Move REPEAT_BYTE definition into linux/kernel.h
 vsprintf: optimize decimal conversion (again)
 lib/kstrtox: common code between kstrto*() and simple_strto*() functions
 lib: make _tolower() public
-sched: don't call task_group() many times in set_task_rq()
-mutex: Make more scalable by doing less atomic operations
-mutex: restrict mutex spinning to only one task per mutex
-mutex: dynamically disable mutex spinning at high load
-ARM: 7493/1: use generic unaligned.h
-switch the protection of percpu_counter list to spinlock
-Asynchronous I/O latency to a solid-state disk greatly increased
-scheduler: compute time-average nr_running per run-queue
-scheduler: Re-compute time-average nr_running on read
-proc: enhance time-average nr_running stats
-mm/slab : fix compilation errors for Samsung kernel
-
+Añadido frandom +Info en: http://billauer.co.il/frandom.html
+Correct md5sum executable on OSX hosts
+timer.c: Optimise apply_slack() for size and speed.
+time: cast ->raw_interval to u64 to avoid shift overflow
+Add MHS, tool for simple media handling status reporting
+mDNIe: decrease sharpening
+mdnie: custom settings
+mdnie: configurable scenarios through sysfs
+mdnie-control: Correctly provide the pointers of the scenarios
+MDNI-CONTROL (full)
+s6e8aa0: Allow manual brightness to 300 candela
+video: add S6E8AA0_AMS465XX panel, LCD_REVERSE, various mDNIe changes
+Eliminado mdnie: Switchable sharpness fix (El nuevo MDNI-CONTROL lo sustituye)
+Nuevo Perfil MAXBATERÍA en ZZMOOVE (LPowerCC)
 -------------------------------------------------- 
 
 
