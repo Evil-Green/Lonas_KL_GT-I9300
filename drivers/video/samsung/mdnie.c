@@ -54,7 +54,7 @@
 #if defined(CONFIG_S6E8AA0_AMS465XX)
 #include "mdnie_table_superior.h"
 #else
-#include "mdnie_table__m0_lonas.h"
+#include "mdnie_table_m0_lonas.h"
 #endif
 #elif defined(CONFIG_FB_S5P_EA8061) || defined(CONFIG_FB_S5P_S6EVR02)
 #include "mdnie_table_t0.h"
