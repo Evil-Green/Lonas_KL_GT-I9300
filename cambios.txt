@@ -55,9 +55,6 @@ s6e8aa0: Allow manual brightness to 300 candela
 video: add S6E8AA0_AMS465XX panel, LCD_REVERSE, various mDNIe changes
 Eliminado mdnie: Switchable sharpness fix (El nuevo MDNI-CONTROL lo sustituye)
 Nuevo Perfil MAXBATERÍA en ZZMOOVE (LPowerCC)
-mm/ashmem.c: fixed a typo introduced by samsung
-Staging: android: binder: Fix use-after-free bug
-Corregido Perfiles ZZmoove
 -------------------------------------------------- 
 
 
