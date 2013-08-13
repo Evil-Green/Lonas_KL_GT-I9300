@@ -108,12 +108,12 @@ struct zram {
 	struct table *table;
 	spinlock_t stat64_lock;	/* protect 64-bit stats */
 	struct rw_semaphore lock; /* protect compression buffers and table
-				 * against concurrent read and writes */
+				   * against concurrent read and writes */
 	struct request_queue *queue;
 	struct gendisk *disk;
 	int init_done;
-	/* Prevent concurrent execution of device init and reset */
-	struct mutex init_lock;
+	/* Prevent concurrent execution of device init, reset and R/W request */
+	struct rw_semaphore init_lock;
 	/*
 	 * This is the limit on amount of *uncompressed* worth of data
 	 * we can store in a disk.
@@ -130,6 +130,6 @@ extern struct attribute_group zram_disk_attr_group;
 #endif
 
 extern int zram_init_device(struct zram *zram);
-extern void zram_reset_device(struct zram *zram);
+extern void __zram_reset_device(struct zram *zram);
 
 #endif
