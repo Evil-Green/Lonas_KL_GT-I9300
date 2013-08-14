@@ -45,6 +45,7 @@ a negative return value indicates failure.  A "put_page" will copy a
 (presumably about-to-be-evicted) page into cleancache and associate it with
 the pool id, a file key, and a page index into the file.  (The combination
 of a pool id, a file key, and an index is sometimes called a "handle".)
+A "get_page" will copy the page, if found, from cleancache into kernel memory.
 An "invalidate_page" will ensure the page no longer is present in cleancache;
 an "invalidate_inode" will invalidate all pages associated with the specified
 file; and, when a filesystem is unmounted, an "invalidate_fs" will invalidate
