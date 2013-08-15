@@ -1,10 +1,10 @@
-Kernel Lonas_KL 5.1-RC9 versión Stock
+Kernel Lonas_KL 5.1 versión Stock
 
 ------------------------------------------------
 Cambios realizados a día 15/08/2013
 
 Ramdisk I9300XXEMG6
-Linux 3.0.90
+Linux 3.0.91
 Zzmoove Versión 0.7
 Compiler flags updated (gcc 4.7)
 Fix Update 11
