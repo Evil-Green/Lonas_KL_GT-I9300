@@ -27,7 +27,6 @@ sysclktz 0
 loglevel 3
 
 # setup the global environment
-    export TERMINFO /system/etc/terminfo
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export LD_LIBRARY_PATH /vendor/lib:/system/lib
     export ANDROID_BOOTLOGO 1
@@ -595,7 +594,8 @@ on boot
     chown system system /sys/class/lmk/lowmemorykiller/lmk_state
     chmod 0664 /sys/block/zram0/disksize
     chown system system /sys/block/zram0/disksize
-    write /sys/block/zram0/disksize 209715200
+#   write /sys/block/zram0/disksize 209715200
+    write /sys/block/zram0/disksize 419430400
     chmod 0664 /sys/block/zram0/initstate
     chown system system /sys/block/zram0/initstate
 

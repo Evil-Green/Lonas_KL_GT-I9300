@@ -1,9 +1,10 @@
-Kernel Lonas_KL 5.1-RC4 versión Stock
+Kernel Lonas_KL 5.1-RC9 versión Stock
 
 ------------------------------------------------
-Cambios realizados a día 11/08/2013
+Cambios realizados a día 15/08/2013
 
-Ramdisk I9300XXEMG4
+Ramdisk I9300XXEMG6
+Linux 3.0.90
 Zzmoove Versión 0.7
 Compiler flags updated (gcc 4.7)
 Fix Update 11
@@ -50,11 +51,57 @@ mDNIe: decrease sharpening
 mdnie: custom settings
 mdnie: configurable scenarios through sysfs
 mdnie-control: Correctly provide the pointers of the scenarios
-MDNI-CONTROL (full)
+MDNI-CONTROL (full) (Traducido por Jeshuuu al Español)
 s6e8aa0: Allow manual brightness to 300 candela
 video: add S6E8AA0_AMS465XX panel, LCD_REVERSE, various mDNIe changes
 Eliminado mdnie: Switchable sharpness fix (El nuevo MDNI-CONTROL lo sustituye)
 Nuevo Perfil MAXBATERÍA en ZZMOOVE (LPowerCC)
+staging: Add Snappy compression support to zram (alt)
+Introduce timer slack controller
+Lonas_defconfig: Añadido CONFIG_CGROUP_TIMER_SLACK=y
+Actualizado zcache
+Lonas_defconfig: Activado Zram-Zcache
+staging: android: lowmemorykiller: Change default debug_level to 1
+staging: android: lowmemorykiller: well-marked debug print
+Staging: zram: Refactor zram_read/write() functions
+Staging: zram: allow partial page operations
+Staging: zram: Replace mutex lock by a R/W semaphore
+Staging: zram: Fix kunmapping order
+staging: zram: make global var num_devices use unique name
+staging: zram: fix zram locking
+staging: zram: prevent accessing an unallocated table when init fails early
+zram: Fix sparse warnings
+Staging: zram/zram_sysfs.c: Fixed call of obsolete function strict_strtoX
+Staging: zram: Add a missing GFP_KERNEL specifier in zram_init_device()
+zRam : add LZ4 compression option as alternative to LZO or Snappy
+zram: simplify and optimize zram_to_dev()
+zram: avoid invalid memory access in zram_exit()
+zram: destroy all devices on error recovery path in zram_init()
+zram: avoid double free in error recovery path of zram_bvec_write()
+zram: avoid access beyond the zram device
+zram: protect sysfs handler from invalid memory access
+mm/slab : fix compilation errors for Samsung kernel
+mm/vmscan.c: Revert last change
+Swappines a 70% por efecto
+Zram a 400 MB por defecto
+Activado Soporte Zram por defecto
+mm: frontswap: add frontswap header file
+mm: frontswap: core swap subsystem hooks and headers
+mm: frontswap: core frontswap functionality
+mm: frontswap: config and doc files
+mm: cleancache: update to match akpm frontswap feedback
+mm: frontswap/cleancache: final flush->invalidate
+Staging: android: fixed 80 characters warnings in lowmemorykiller.c
+staging: android/lowmemorykiller: Don't grab tasklist_lock
+staging: android/lowmemorykiller: Better mm handling
+staging: android/lowmemorykiller: No need for task->signal check
+staging: android/lowmemorykiller: Do not kill kernel threads
+staging: android, lowmemorykiller: convert to use oom_score_adj
+Staging: android: lowmemorykiller.c: Fix compiler warning about the type of the module parameter.
+staging: android: lowmemorykiller: Add config option to support oom_adj values
+lowmemorykiller.c: Fix error negative width in bit-field
+Añadido Controlador J4FS
+xen: prepare tmem shim to handle frontswap
 -------------------------------------------------- 
 
 

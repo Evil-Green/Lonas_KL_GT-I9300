@@ -138,6 +138,7 @@ deps_config := \
 	drivers/staging/zcache/Kconfig \
 	drivers/staging/zram/Kconfig \
 	drivers/staging/lz4/Kconfig \
+	drivers/staging/snappy/Kconfig \
 	drivers/staging/cs5535_gpio/Kconfig \
 	drivers/staging/iio/trigger/Kconfig \
 	drivers/staging/iio/resolver/Kconfig \
@@ -744,7 +745,7 @@ deps_config := \
 include/config/auto.conf: \
 	$(deps_config)
 
-ifneq "$(KERNELVERSION)" "3.0.89"
+ifneq "$(KERNELVERSION)" "3.0.90"
 include/config/auto.conf: FORCE
 endif
 ifneq "$(ARCH)" "arm"

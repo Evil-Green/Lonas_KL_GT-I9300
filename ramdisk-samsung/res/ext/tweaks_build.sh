@@ -12,7 +12,7 @@
 /sbin/busybox setprop debug.sf.hw 1
 
 # Incremento de memoria ram
-/sbin/busybox setprop dalvik.vm.heapsize 192m
+/sbin/busybox setprop dalvik.vm.heapsize 148m
 
 # Salvar bateria ahorrando en el wifi 
 /sbin/busybox setprop wifi.supplicant_scan_interval 300
